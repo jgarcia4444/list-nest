@@ -1,5 +1,7 @@
 import React from 'react';
 
+import AuthForm from './userAuth/AuthForm';
+
 const UserAuth = () => {
 
     return (

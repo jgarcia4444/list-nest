@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from '../media/logo/ListNest.png';
 
+import UserAuth from '../components/UserAuth';
+
 const Landing = () => {
 
     return (
@@ -8,6 +10,7 @@ const Landing = () => {
             <div className="">
                 <img src={logo} alt="" className="w-24" />
             </div>
+            <UserAuth />
         </div>
     )
 }
