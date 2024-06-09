@@ -1,7 +1,11 @@
-import { combineReucers } from '@reduxjs/toolkit';
+import { combineReducers } from '@reduxjs/toolkit';
 
-const rootReducer = combineReucers({
+import UserReducer from './UserReducer/UserReducer';
+import AuthControl from './AuthControl/AuthControl';
 
+const rootReducer = combineReducers({
+    UserInfo: UserReducer,
+    AuthControl
 });
 
 export default rootReducer;

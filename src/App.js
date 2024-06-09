@@ -22,7 +22,7 @@ function App() {
   ]);
 
   return (
-    <div className="App relative">
+    <div className="App relative bg-nude-color w-screen h-screen text-primary-green">
       <RouterProvider router={router} />
     </div>
   );
