@@ -20,7 +20,7 @@ const createUser = (userInfo) => {
     return async dispatch => {
         dispatch({type: "CREATING_USER"});
         const url = `${api}/users`;
-        const body = {
+        const options = {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

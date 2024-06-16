@@ -13,6 +13,14 @@ const initialState = {
 
 const AuthControl = (state=initialState, action) => {
     switch(action.type) {
+        case 'FORM_CHANGE':
+            return {
+                ...state,
+                authInfo: {
+                    ...state.authInfo,
+                    ...action.newInfo
+                }
+            }
         case "USER_CREATION_ERROR":
             return {
                 ...state,
