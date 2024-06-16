@@ -1,10 +1,12 @@
 const initialState = {
-    username: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    passwordConfirmation: "",
+    authInfo: {
+        username: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        passwordConfirmation: "",
+    },
     errors: [],
     mainError: "",
 }
