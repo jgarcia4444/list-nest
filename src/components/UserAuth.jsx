@@ -13,9 +13,9 @@ const UserAuth = ({UserInfo, createUser, authInfo}) => {
     const [login, setLogin] = useState(true);
 
     const otherPageButton = (
-        <p onClick={() => setLogin(!login)} className="text-primary-green hover:cursor-pointer">
+        <button onClick={() => setLogin(!login)} className="text-primary-green bg-white py-1 px-4 rounded hover:cursor-pointer transition-all duration-300 hover:scale-105">
             {login === true ? "Sign Up": "Login"}
-        </p>
+        </button>
     )
 
     const submitButtonText = login === true ? "Login": "Sign Up";
