@@ -6,21 +6,21 @@ import FormInput from './FormInput/FormInput';
 
 import formChange from '../../redux/actions/authActions/formChange';
 
-const AuthForm = ({login, authInfo}) => {
+const AuthForm = ({login, authInfo, formChange}) => {
 
     const iconSize = 24;
     const iconColor = "#f5ebe7";
-
-    const {firstName, lastName} = authInfo;
+    const {firstName, lastName, username, email, password, passwordConfirmation, phoneNumber} = authInfo;
+    console.log("Auth Info: ", authInfo);
 
     const formInputs = [
-        {label: "First Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "John", value: {firstName}, onChange: () => formChange({firstName})},
-        {label: "Last Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "Doe", value: lastName, onChange: ""},
-        {label: "Username", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "jDoe1234", value: "", onChange: ""},
-        {label: "Email", inputType: "email", icon: <FiMail size={iconSize} color={iconColor} />, placeholder: "johndoe@email.com", value: "", onChange: ""},
-        {label: "Phone Number", inputType: "tel", icon: <FiPhone size={iconSize} color={iconColor} />, placeholder: "1234567891", value: "", onChange: ""},
-        {label: "Password", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: "", onChange: ""},
-        {label: "Password Confirmation", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: "", onChange: ""},
+        {label: "First Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "John", value: firstName, changeFunc: val => formChange({firstName: val})},
+        {label: "Last Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "Doe", value: lastName, changeFunc: val => formChange({lastName: val})},
+        {label: "Username", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "jDoe1234", value: username, changeFunc: val => formChange({username: val}) },
+        {label: "Email", inputType: "email", icon: <FiMail size={iconSize} color={iconColor} />, placeholder: "johndoe@email.com", value: email, changeFunc: val => formChange({email: val})},
+        {label: "Phone Number", inputType: "tel", icon: <FiPhone size={iconSize} color={iconColor} />, placeholder: "1234567891", value: phoneNumber, changeFunc: val => formChange({phoneNumber: val})},
+        {label: "Password", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: password, changeFunc: val => formChange({password: val})},
+        {label: "Password Confirmation", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: passwordConfirmation, changeFunc: val => formChange({passwordConfirmation: val})},
     ];
 
     const renderInputs = () => {

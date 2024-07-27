@@ -4,6 +4,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
+
 import Home from './screens/Home';
 import Landing from './screens/Landing';
 
@@ -23,7 +27,9 @@ function App() {
 
   return (
     <div className="App relative bg-nude-color w-screen h-screen text-primary-green">
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </div>
   );
 }
