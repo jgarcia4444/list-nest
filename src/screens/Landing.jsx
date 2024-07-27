@@ -10,10 +10,10 @@ import emulators from '../config/firebaseConfiguration';
 
 const Landing = () => {
 
-    const {firestoreApp, auth} = emulators;
+    const {store, auth} = emulators;
 
     useEffect(() => {
-        console.log("Firestore App", firestoreApp);
+        console.log("Firestore App", store);
         console.log("Auth connection", auth);
     })
 
