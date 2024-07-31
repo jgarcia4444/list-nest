@@ -31,6 +31,8 @@ const UserReducer = (state=initialState, action) => {
                 ...state,
                 loading: true,
             }
+        case "USER_CREATED":
+            console.log("USER CREATED REDUCER!!!", action.userCredentials);
         default:
             return {
                 ...state,
