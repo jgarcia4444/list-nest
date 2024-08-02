@@ -1,10 +1,22 @@
 
+import firebase from "firebase/compat/app";
 import { Urls } from "../../../config/Urls";
 const {api} = Urls;
 
 import emulators from "../../../config/firebaseConfiguration";
 const {auth} = emulators;
 import { createUserWithEmailAndPassword} from "firebase/auth";
+
+const firebaseUser = userInfo => {
+    let {email, uid, accessToken, displayName, phoneNumber, emailVerified} = userInfo;
+    return {
+        email,
+        accessToken,
+        displayName,
+        phoneNumber,
+        emailVerified
+    }
+}
 
 const createUser = (userInfo) => {
 
@@ -16,11 +28,7 @@ const createUser = (userInfo) => {
             .then((userCredential) => {
                 setTimeout(() => {
                     let {user} = userCredential
-                    let userInfo = {
-                        email: user.email,
-                        uid: user.uid,
-                        accessToken: user.accessToken
-                    }
+                    let userInfo = firebaseUser(user);
                     dispatch({type: "USER_CREATED", userInfo})
                 }, 1250)
             })
