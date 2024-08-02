@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import { getFirestore, connectFirestoreEmulator, } from 'firebase/firestore';
-import { getAuth, connectAuthEmulator, onAuthStateChanged } from 'firebase/auth';
+import React, {useState, useEffect} from 'react';
+
+import { onAuthStateChanged } from 'firebase/auth';
 
 import logo from '../media/logo/ListNest-no-bg.png';
 
 import UserAuth from '../components/UserAuth';
+import Home from './Home';
 
 import emulators from '../config/firebaseConfiguration';
 
@@ -14,18 +15,21 @@ const Landing = () => {
 
     const {store, auth} = emulators;
 
-    const checkLogIn = () => {
-        let user = auth.currentUser
-        if (user) {
-            setIsLoggedIn(true)
-        } else {
-            setIsLoggedIn(false);
-        }
-    }
+    // onAuthStateChanged(auth, user => {
+    //     if (user) {
+    //         setIsLoggedIn(true);
+    //     } else {
+    //         setIsLoggedIn(false);
+    //     }
+    // })
 
     useEffect(() => {
-        checkLogIn()
-    })
+        if (auth.currentUser) {
+            setIsLoggedIn(true)
+        } else {
+            setIsLoggedIn(false)
+        }
+    },[auth.currentUser])
 
     return (
         <div className="flex flex-col w-full h-full items-center justify-center">
