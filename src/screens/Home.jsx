@@ -2,6 +2,8 @@ import React from 'react';
 
 import emulators from '../config/firebaseConfiguration';
 
+import SignOutButton from '../shared/buttons/SignOutButton';
+
 const Home = () => {
 
     const {auth} = emulators;
@@ -10,6 +12,7 @@ const Home = () => {
     return (
         <div className="">
             Home
+            <SignOutButton />
         </div>
     )
 };

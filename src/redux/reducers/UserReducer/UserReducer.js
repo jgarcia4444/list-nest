@@ -7,6 +7,16 @@ const initialState = {
 
 const UserReducer = (state=initialState, action) => {
     switch (action.type) {
+        case "USER_SIGN_OUT_SUCCESS": {
+            return {
+                ...initialState
+            }
+        }
+        case "SIGNING_USER_OUT":
+            return {
+                ...state,
+                loading: true,
+            }
         case "USER_CREATION_ERROR":
             return {
                 ...state,
