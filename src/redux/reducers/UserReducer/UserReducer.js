@@ -1,12 +1,6 @@
 
 const initialState = {
-    info: {
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        phoneNumber: "",
-        id: undefined,
+    userCredentials: {
     },
     loading: false,
 }
@@ -32,7 +26,13 @@ const UserReducer = (state=initialState, action) => {
                 loading: true,
             }
         case "USER_CREATED":
-            console.log("USER CREATED REDUCER!!!", action.userCredentials);
+            return {
+                ...state,
+                loading: false,
+                userCredentials: {
+                    ...action.userCredentials,
+                }
+            }
         default:
             return {
                 ...state,
