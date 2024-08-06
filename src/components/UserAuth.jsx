@@ -26,7 +26,6 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
         if (login === true) {
             loginUser(authInfo);
         } else {
-            console.log("Create user should be triggered from the UserAuth component!");
             createUser(authInfo);
         }
     }

@@ -33,7 +33,7 @@ const createUser = (userInfo) => {
                 }, 1250)
             })
             .catch(error => {
-                console.log("Uh oh there was an error while trying to create the user.", error);
+                console.log("Uh oh there was an error while trying to create the user.");
                 console.log(error.code);
                 console.log(error.message);
             })

@@ -16,6 +16,7 @@ const Landing = () => {
     const {store, auth} = emulators;
 
     // onAuthStateChanged(auth, user => {
+    //     console.log("AUTH STATE CHANGED", auth);
     //     if (user) {
     //         setIsLoggedIn(true);
     //     } else {
@@ -24,12 +25,14 @@ const Landing = () => {
     // })
 
     useEffect(() => {
+        console.log("current user from the landing component", auth.currentUser);
         if (auth.currentUser) {
             setIsLoggedIn(true)
         } else {
             setIsLoggedIn(false)
         }
     },[auth.currentUser])
+    // 
 
     return (
         <div className="flex flex-col w-full h-full items-center justify-center">
