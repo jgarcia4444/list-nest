@@ -4,6 +4,7 @@ import { FiLoader } from 'react-icons/fi';
 
 import signOutUser from '../../redux/actions/userActions/signOutUser';
 
+
 const SignOutButton = ({loading, signOutUser}) => {
 
     const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
@@ -27,7 +28,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signOutUser: dispatch(signOutUser())
+        signOutUser: () => dispatch(signOutUser())
     }
 }
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-
-import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import logo from '../media/logo/ListNest-no-bg.png';
 
@@ -9,11 +9,13 @@ import Home from './Home';
 
 import emulators from '../config/firebaseConfiguration';
 
-const Landing = () => {
+const Landing = ({uid}) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const {store, auth} = emulators;
+
+    const navigate = useNavigate();
 
     // onAuthStateChanged(auth, user => {
     //     console.log("AUTH STATE CHANGED", auth);
@@ -27,11 +29,11 @@ const Landing = () => {
     useEffect(() => {
         console.log("current user from the landing component", auth.currentUser);
         if (auth.currentUser) {
-            setIsLoggedIn(true)
+            navigate('/home')
         } else {
             setIsLoggedIn(false)
         }
-    },[auth.currentUser])
+    },[uid])
 
     return (
         <div className="flex flex-col w-full h-full items-center justify-center">
@@ -51,4 +53,13 @@ const Landing = () => {
     )
 }
 
-export default Landing;
+const mapStateToProps = state => {
+    return {
+        uid: state.UserInfo.userInfo.uid,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(Landing);

@@ -1,4 +1,5 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
+
 import emulators from '../../../config/firebaseConfiguration'
 import firebaseUser from '../../../config/firebaseUser';
 const loginUser = authInfo => {
@@ -6,7 +7,6 @@ const loginUser = authInfo => {
     const {auth} = emulators;
 
     const {email, password} = authInfo;
-    console.log("Here is the auth info passed to login user action", authInfo);
 
     return async dispatch => {
         dispatch({type: "LOGGING_IN"});

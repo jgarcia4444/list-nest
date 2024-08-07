@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { FiLoader } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 import AuthForm from './userAuth/AuthForm';
 
@@ -9,7 +10,9 @@ import loginUser from '../redux/actions/userActions/loginUser';
 
 const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
 
-    const {loading} = UserInfo;
+    const navigate = useNavigate();
+
+    const {loading, userInfo} = UserInfo;
 
     const [login, setLogin] = useState(true);
 
