@@ -1,12 +1,31 @@
 
 const initialState = {
-    userCredentials: {
+    userInfo: {
+        email: "",
+        uid: "",
+        accessToken: "",
+        emailVerified: "",
+        displayName: "",
+        phoneNumber: "",
     },
     loading: false,
 }
 
 const UserReducer = (state=initialState, action) => {
     switch (action.type) {
+        case "USER_LOGIN_SUCCESS":
+            return {
+                ...state,
+                userInfo: {
+                    ...action.userInfo
+                },
+                loading: false,
+            }
+        case "LOGGING_IN":
+            return {
+                ...state,
+                loading: true,
+            }
         case "USER_SIGN_OUT_SUCCESS": {
             return {
                 ...initialState
@@ -22,14 +41,6 @@ const UserReducer = (state=initialState, action) => {
                 ...state,
                 loading: false
             }
-        case "USER_CREATION_SUCCESS":
-            return {
-                ...state,
-                info: {
-                    ...action.userInfo
-                },
-                loading: false,
-            }
         case "CREATING_USER":
             return {
                 ...state,
@@ -40,7 +51,7 @@ const UserReducer = (state=initialState, action) => {
                 ...state,
                 loading: false,
                 userCredentials: {
-                    ...action.userCredentials,
+                    ...action.userInfo,
                 }
             }
         default:

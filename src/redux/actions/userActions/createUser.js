@@ -2,21 +2,11 @@
 import firebase from "firebase/compat/app";
 import { Urls } from "../../../config/Urls";
 const {api} = Urls;
+import firebaseUser from "../../../config/firebaseUser";
 
 import emulators from "../../../config/firebaseConfiguration";
 const {auth} = emulators;
 import { createUserWithEmailAndPassword} from "firebase/auth";
-
-const firebaseUser = userInfo => {
-    let {email, uid, accessToken, displayName, phoneNumber, emailVerified} = userInfo;
-    return {
-        email,
-        accessToken,
-        displayName,
-        phoneNumber,
-        emailVerified
-    }
-}
 
 const createUser = (userInfo) => {
 

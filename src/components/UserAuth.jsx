@@ -32,7 +32,7 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
     
     const submitButtonText = login === true ? "Login": "Sign Up";
     const submitButton = (
-        <div onClick={handleSubmitPress} className="bg-primary-green text-nude-color w-1/3 py-1 rounded hover:cursor-pointer transition-all duration-300 hover:scale-105">
+        <div onClick={handleSubmitPress} className="bg-primary-green text-nude-color w-1/3 py-1 rounded hover:cursor-pointer transition-all duration-300 hover:scale-105 flex items-center justify-center">
             {loading === true ? loader : submitButtonText}
         </div>
     )
