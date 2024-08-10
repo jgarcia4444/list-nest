@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import { FiLoader } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +13,8 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
     const navigate = useNavigate();
 
     const {loading, userInfo} = UserInfo;
+
+    let {email} = userInfo;
 
     const [login, setLogin] = useState(true);
 
@@ -39,6 +41,13 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
             {loading === true ? loader : submitButtonText}
         </div>
     )
+
+    useEffect(() => {
+        console.log("What is the email", email);
+        if (email !== "") {
+            navigate("/home");
+        }
+    }, [email])
 
     return (
         <div className="flex flex-col w-full items-center">

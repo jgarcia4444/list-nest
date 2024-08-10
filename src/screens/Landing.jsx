@@ -9,46 +9,14 @@ import Home from './Home';
 
 import emulators from '../config/firebaseConfiguration';
 
-const Landing = ({uid}) => {
-
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const {store, auth} = emulators;
-
-    const navigate = useNavigate();
-
-    // onAuthStateChanged(auth, user => {
-    //     console.log("AUTH STATE CHANGED", auth);
-    //     if (user) {
-    //         setIsLoggedIn(true);
-    //     } else {
-    //         setIsLoggedIn(false);
-    //     }
-    // })
-
-    useEffect(() => {
-        console.log("current user from the landing component", auth.currentUser);
-        if (auth.currentUser) {
-            navigate('/home')
-        } else {
-            setIsLoggedIn(false)
-        }
-    },[uid])
+const Landing = ()  => {
 
     return (
         <div className="flex flex-col w-full h-full items-center justify-center">
-            {isLoggedIn === true ?
-                <Home />
-            :
-            (
-                <>
-                    <div className="">
-                        <img src={logo} alt="" className="w-32" />
-                    </div>
-                    <UserAuth />
-                </>
-            )
-            }
+            <div className="">
+                <img src={logo} alt="" className="w-32" />
+            </div>
+            <UserAuth />
         </div>
     )
 }

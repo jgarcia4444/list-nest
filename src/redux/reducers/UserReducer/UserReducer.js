@@ -9,6 +9,7 @@ const initialState = {
         phoneNumber: "",
     },
     loading: false,
+    error: "",
 }
 
 const UserReducer = (state=initialState, action) => {
@@ -50,7 +51,7 @@ const UserReducer = (state=initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                userCredentials: {
+                userInfo: {
                     ...action.userInfo,
                 }
             }
