@@ -6,7 +6,10 @@ import emulators from '../config/firebaseConfiguration';
 
 import SignOutButton from '../shared/buttons/SignOutButton';
 
-const Home = ({uid}) => {
+const Home = ({userInfo}) => {
+
+    let {uid} = userInfo;
+    console.log(userInfo);
 
     const navigate = useNavigate();
 
@@ -26,7 +29,7 @@ const Home = ({uid}) => {
 
 const mapStateToProps = state => {
     return {
-        uid: state.UserInfo.userInfo.uid,
+        userInfo: state.UserInfo.userInfo,
     }
 }
 

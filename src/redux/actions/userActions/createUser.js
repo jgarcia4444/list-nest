@@ -3,10 +3,10 @@
 import firebaseUser from "../../../config/firebaseUser";
 import emulators from "../../../config/firebaseConfiguration";
 const {auth} = emulators;
-import { createUserWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const createUser = (userInfo) => {
-
+    
 
     const {email, password} = userInfo;
 
@@ -14,11 +14,16 @@ const createUser = (userInfo) => {
         dispatch({type: "CREATING_USER"});
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                setTimeout(() => {
-                    let {user} = userCredential
-                    let userInfo = firebaseUser(user);
-                    return dispatch({type: "USER_CREATED", userInfo})
-                }, 1250)
+                // let {user} = userCredential
+                // let userInfo = firebaseUser(user);
+                // return dispatch({type: "USER_CREATED", userInfo})
+                updateProfile(userCredential.user, {
+                    displayName: userInfo.username,
+                    phoneNumber: userInfo.phoneNumber,
+                })
+                .then(blah => {
+                    console.log("blah", blah);
+                })
             })
             .catch(error => {
                 console.log("Uh oh there was an error while trying to create the user.");
