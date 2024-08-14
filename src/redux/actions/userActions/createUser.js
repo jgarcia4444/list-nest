@@ -1,28 +1,28 @@
+import { createUserWithEmailAndPassword, updateProfile, updatePhoneNumber, } from "firebase/auth";
 
-
-import firebaseUser from "../../../config/firebaseUser";
+import firebaseUser from '../../../config/firebaseUser';
 import emulators from "../../../config/firebaseConfiguration";
 const {auth} = emulators;
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const createUser = (userInfo) => {
     
 
-    const {email, password} = userInfo;
+    const {email, password, username, phoneNumber} = userInfo;
 
     return async dispatch => {
         dispatch({type: "CREATING_USER"});
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // let {user} = userCredential
-                // let userInfo = firebaseUser(user);
-                // return dispatch({type: "USER_CREATED", userInfo})
-                updateProfile(userCredential.user, {
-                    displayName: userInfo.username,
-                    phoneNumber: userInfo.phoneNumber,
+                let {user} = userCredential
+                updateProfile(user, {
+                    displayName: username,
                 })
-                .then(blah => {
-                    console.log("blah", blah);
+                .then(() => { 
+                    let savedUser = firebaseUser(user);
+                    return dispatch({type: "USER_CREATED", userInfo: savedUser})
+                })
+                .catch(error => {
+                    console.log("There was an error adding the usernam", error.message);
                 })
             })
             .catch(error => {
