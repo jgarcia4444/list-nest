@@ -17,7 +17,6 @@ const AuthForm = ({login, authInfo, formChange}) => {
         {label: "Last Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "Doe", value: lastName, changeFunc: val => formChange({lastName: val})},
         {label: "Username", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "jDoe1234", value: username, changeFunc: val => formChange({username: val}) },
         {label: "Email", inputType: "email", icon: <FiMail size={iconSize} color={iconColor} />, placeholder: "johndoe@email.com", value: email, changeFunc: val => formChange({email: val})},
-        {label: "Phone Number", inputType: "tel", icon: <FiPhone size={iconSize} color={iconColor} />, placeholder: "1234567891", value: phoneNumber, changeFunc: val => formChange({phoneNumber: val})},
         {label: "Password", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: password, changeFunc: val => formChange({password: val})},
         {label: "Password Confirmation", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: passwordConfirmation, changeFunc: val => formChange({passwordConfirmation: val})},
     ];

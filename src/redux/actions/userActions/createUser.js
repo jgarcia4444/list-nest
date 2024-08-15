@@ -24,7 +24,7 @@ const createUser = (userInfo) => {
                 .catch(error => {
                     console.log("There was an error adding the usernam", error.message);
                 })
-            })
+            }) 
             .catch(error => {
                 console.log("Uh oh there was an error while trying to create the user.");
                 console.log(error.code);
