@@ -6,10 +6,10 @@ const initialState = {
         accessToken: "",
         emailVerified: "",
         displayName: "",
-        phoneNumber: "",
     },
     loading: false,
     error: "",
+    errors: [],
 }
 
 const UserReducer = (state=initialState, action) => {

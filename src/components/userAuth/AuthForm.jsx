@@ -10,7 +10,7 @@ const AuthForm = ({login, authInfo, formChange}) => {
 
     const iconSize = 24;
     const iconColor = "#f5ebe7";
-    const {firstName, lastName, username, email, password, passwordConfirmation, phoneNumber} = authInfo;
+    const {firstName, lastName, username, email, password, passwordConfirmation} = authInfo;
 
     const formInputs = [
         {label: "First Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "John", value: firstName, changeFunc: val => formChange({firstName: val})},

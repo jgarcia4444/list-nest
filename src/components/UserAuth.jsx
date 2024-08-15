@@ -12,7 +12,7 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
 
     const navigate = useNavigate();
 
-    const {loading, userInfo} = UserInfo;
+    const {loading, userInfo, errors} = UserInfo;
 
     let {email} = userInfo;
 
@@ -26,12 +26,26 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
 
     
     const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
+
+    const validateForm = validatingInfo => {
+    }
     
     const handleSubmitPress = () => {
-        if (login === true) {
-            loginUser(authInfo);
-        } else {
-            createUser(authInfo);
+        validateForm()
+        let infoToBeValidated = {
+            email: authInfo.email,
+            password: authInfo.password
+        }
+        if (login === false) {
+            infoToBeValidated = authInfo;
+        }
+        validateForm(infoToBeValidated);
+        if (errors.length === 0) {
+            if (login === true) {
+                loginUser(authInfo);
+            } else {
+                createUser(authInfo);
+            }
         }
     }
     
