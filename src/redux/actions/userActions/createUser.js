@@ -7,7 +7,7 @@ const {auth} = emulators;
 const createUser = (userInfo) => {
     
 
-    const {email, password, username, phoneNumber} = userInfo;
+    const {email, password, username} = userInfo;
 
     return async dispatch => {
         dispatch({type: "CREATING_USER"});
@@ -18,8 +18,10 @@ const createUser = (userInfo) => {
                     displayName: username,
                 })
                 .then(() => { 
-                    let savedUser = firebaseUser(user);
-                    return dispatch({type: "USER_CREATED", userInfo: savedUser})
+                    setTimeout(() => {
+                        let savedUser = firebaseUser(user);
+                        return dispatch({type: "USER_CREATED", userInfo: savedUser})
+                    },[500])
                 })
                 .catch(error => {
                     console.log("There was an error adding the usernam", error.message);
