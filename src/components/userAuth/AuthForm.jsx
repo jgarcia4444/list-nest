@@ -13,12 +13,12 @@ const AuthForm = ({login, authInfo, formChange}) => {
     const {firstName, lastName, username, email, password, passwordConfirmation} = authInfo;
 
     const formInputs = [
-        {label: "First Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "John", value: firstName, changeFunc: val => formChange({firstName: val})},
-        {label: "Last Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "Doe", value: lastName, changeFunc: val => formChange({lastName: val})},
-        {label: "Username", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "jDoe1234", value: username, changeFunc: val => formChange({username: val}) },
-        {label: "Email", inputType: "email", icon: <FiMail size={iconSize} color={iconColor} />, placeholder: "johndoe@email.com", value: email, changeFunc: val => formChange({email: val})},
-        {label: "Password", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: password, changeFunc: val => formChange({password: val})},
-        {label: "Password Confirmation", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: passwordConfirmation, changeFunc: val => formChange({passwordConfirmation: val})},
+        {identifier: "firstName", label: "First Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "John", value: firstName, changeFunc: val => formChange({firstName: val})},
+        {identifier: "lastName", label: "Last Name", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "Doe", value: lastName, changeFunc: val => formChange({lastName: val})},
+        {identifier: "username", label: "Username", inputType: "text", icon: <FiUser size={iconSize} color={iconColor} />, placeholder: "jDoe1234", value: username, changeFunc: val => formChange({username: val}) },
+        {identifier: "email", label: "Email", inputType: "email", icon: <FiMail size={iconSize} color={iconColor} />, placeholder: "johndoe@email.com", value: email, changeFunc: val => formChange({email: val})},
+        {identifier: "password", label: "Password", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: password, changeFunc: val => formChange({password: val})},
+        {identifier: "passwordConfirmation", label: "Password Confirmation", inputType: "password", icon: <FiLock size={iconSize} color={iconColor} />, placeholder: "", value: passwordConfirmation, changeFunc: val => formChange({passwordConfirmation: val})},
     ];
 
     const renderInputs = () => {
