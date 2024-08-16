@@ -42,7 +42,7 @@ const FormInput = ({info, errors}) => {
 
 const mapStateToProps = state => {
     return {
-        errors: state.AuthControl.authInfo.errors,
+        errors: state.AuthControl.errors,
     }
 }
 

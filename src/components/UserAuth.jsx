@@ -7,12 +7,14 @@ import AuthForm from './userAuth/AuthForm';
 
 import createUser from '../redux/actions/userActions/createUser';
 import loginUser from '../redux/actions/userActions/loginUser';
+import addError from '../redux/actions/authActions/addError';
 
-const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
+const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
 
     const navigate = useNavigate();
 
-    const {loading, userInfo, errors} = UserInfo;
+    const {errors} = authInfo;
+    const {loading, userInfo, } = UserInfo;
 
     let {email} = userInfo;
 
@@ -32,7 +34,11 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
         for (let i = 0; i < infoKeys.length; i++) {
             let infoKey = infoKeys[i];
             if (validatingInfo[infoKey] === "") {
-
+                let errorInfo = {
+                    identifier: infoKey,
+                    errorMessage: "Can not be left empty",
+                }
+                addError(errorInfo);
             } else {
                 // check for other requirements
                 switch(infoKey) {
@@ -107,6 +113,7 @@ const mapDispatchToProps = dispatch => {
     return {
         createUser: userInfo => dispatch(createUser(userInfo)),
         loginUser: info => dispatch(loginUser(info)),
+        addError: errorInfo => dispatch(addError(errorInfo)),
     }
 }
 
