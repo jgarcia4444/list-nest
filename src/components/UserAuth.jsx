@@ -28,6 +28,25 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser}) => {
     const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
 
     const validateForm = validatingInfo => {
+        let infoKeys = Object.keys(validatingInfo);
+        for (let i = 0; i < infoKeys.length; i++) {
+            let infoKey = infoKeys[i];
+            if (validatingInfo[infoKey] === "") {
+
+            } else {
+                // check for other requirements
+                switch(infoKey) {
+                    case "email":
+                    case "password":
+                    case "passwordConfirmation":
+                    case "firstName":
+                    case "lastName":
+                    case "username":
+                    default:
+                        continue;
+                }
+            }
+        }
     }
     
     const handleSubmitPress = () => {
