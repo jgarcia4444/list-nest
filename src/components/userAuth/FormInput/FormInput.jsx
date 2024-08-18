@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+
 import { connect } from 'react-redux';
 
 const FormInput = ({info, errors}) => {
@@ -8,11 +9,13 @@ const FormInput = ({info, errors}) => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const setErrorText = () => {
-        let foundError = errors.filter(errorObject => errorObject.identifier === identifier);
-        if (foundError.length !== 0) {
-            setErrorMessage(foundError[0].errorMessage);
-        } else {
-            return setErrorMessage("");
+        if (errors.length !== 0) {
+            let foundError = errors.filter(errorObject => errorObject.identifier === identifier);
+            if (foundError.length !== 0) {
+                setErrorMessage(foundError[0].errorMessage);
+            } else {
+                return setErrorMessage("");
+            }
         }
     }
 
@@ -24,7 +27,7 @@ const FormInput = ({info, errors}) => {
         <div className="flex flex-col items-start">
             <div className="flex flex-row">
                 <label className="font-thin text-sm text-nude-color">{label}</label>
-                <small className="text-red text-sm">{errorMessage}</small>
+                <small className=" text-red-600 text-sm">{errorMessage}</small>
             </div>
             <div className="flex flex-row bg-white bg-opacity-20 rounded py-1 px-2">
                 {icon}

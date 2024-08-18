@@ -6,7 +6,6 @@ const initialState = {
         lastName: "",
         password: "",
         passwordConfirmation: "",
-        phoneNumber: "",
     },
     errors: [],
     mainError: "",
@@ -14,6 +13,11 @@ const initialState = {
 
 const AuthControl = (state=initialState, action) => {
     switch(action.type) {
+        case "ADD_ERROR":
+            return {
+                ...state,
+                errors: [...state.errors, action.errorInfo]
+            }
         case "FORM_CHANGE":
             return {
                 ...state,

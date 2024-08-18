@@ -9,11 +9,10 @@ import createUser from '../redux/actions/userActions/createUser';
 import loginUser from '../redux/actions/userActions/loginUser';
 import addError from '../redux/actions/authActions/addError';
 
-const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
+const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
 
     const navigate = useNavigate();
-
-    const {errors} = authInfo;
+    const {authInfo, errors} = AuthControl
     const {loading, userInfo, } = UserInfo;
 
     let {email} = userInfo;
@@ -30,10 +29,12 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
     const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
 
     const validateForm = validatingInfo => {
+        let errorPresent = false;
         let infoKeys = Object.keys(validatingInfo);
         for (let i = 0; i < infoKeys.length; i++) {
             let infoKey = infoKeys[i];
             if (validatingInfo[infoKey] === "") {
+                errorPresent = true;
                 let errorInfo = {
                     identifier: infoKey,
                     errorMessage: "Can not be left empty",
@@ -53,10 +54,10 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
                 }
             }
         }
+        return errorPresent;
     }
     
     const handleSubmitPress = () => {
-        validateForm()
         let infoToBeValidated = {
             email: authInfo.email,
             password: authInfo.password
@@ -64,8 +65,7 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
         if (login === false) {
             infoToBeValidated = authInfo;
         }
-        validateForm(infoToBeValidated);
-        if (errors.length === 0) {
+        if (validateForm(infoToBeValidated) === false) {
             if (login === true) {
                 loginUser(authInfo);
             } else {
@@ -82,7 +82,6 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
     )
 
     useEffect(() => {
-        console.log("What is the email", email);
         if (email !== "") {
             navigate("/home");
         }
@@ -105,7 +104,8 @@ const UserAuth = ({UserInfo, createUser, authInfo, loginUser, addError}) => {
 const mapStateToProps = state => {
     return {
         UserInfo: state.UserInfo,
-        authInfo: state.AuthControl.authInfo,
+        AuthControl: state.AuthControl,
+        
     }
 }
 
