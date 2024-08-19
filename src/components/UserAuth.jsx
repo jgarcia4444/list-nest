@@ -41,21 +41,16 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 }
                 addError(errorInfo);
             } else {
-                // check for other requirements
                 let infoValue = validatingInfo[infoKey];
                 switch(infoKey) {
                     case "email":
-                        validateEmail(infoValue);
+                        errorPresent = validateEmail(infoValue);
                     case "password":
-                        validatePassword(infoValue);
+                        errorPresent = validatePassword(infoValue);
                     case "passwordConfirmation":
-                        validatePasswordConfirmation(infoValue);
-                    case "firstName":
-                        // remove first name error
-                    case "lastName":    
-                        //remove last name error                        
+                        errorPresent = validatePasswordConfirmation(infoValue);                       
                     case "username":
-                        validateUsername(infoValue);
+                        errorPresent = validateUsername(infoValue);
                     default:
                         continue;
                 }
@@ -78,6 +73,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 errorMessage: "Must contain an '@' symbol"
             }
             addError(errorInfo);
+            return true;
         }
         potentialEmail = potentialEmail[1];
         qualifierIndex += 1;
@@ -88,6 +84,8 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 identifier: "email",
                 errorMessage: "Must contain a '.' symbol"
             }
+            addError(errorInfo);
+            return true;
         }
     }
     

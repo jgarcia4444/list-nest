@@ -57,6 +57,26 @@ const FormInput = ({info, errors}) => {
         }
     }
 
+    const validateEmail = potentialEmail => {
+        let emailQualifiers = ['@', '.']
+        let qualifierIndex = 0;
+        let testingChar = emailQualifiers[qualifierIndex];
+        potentialEmail.split(testingChar);
+        if (potentialEmail.length === 2) {
+            potentialEmail = potentialEmail[1];
+            qualifierIndex += 1;
+            testingChar = emailQualifiers[qualifierIndex];
+            potentialEmail.split(testingChar);
+            if (potentialEmail.length === 2) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     useEffect(() => {
         setErrorText();
     },[errors.length])
