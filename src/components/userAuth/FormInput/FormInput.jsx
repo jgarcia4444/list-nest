@@ -27,7 +27,7 @@ const FormInput = ({info, errors}) => {
         <div className="flex flex-col items-start">
             <div className="flex flex-row">
                 <label className="font-thin text-sm text-nude-color">{label}</label>
-                <small className=" text-red-600 text-sm">{errorMessage}</small>
+                <small className=" text-red-600 text-xs">{errorMessage}</small>
             </div>
             <div className="flex flex-row bg-white bg-opacity-20 rounded py-1 px-2">
                 {icon}
