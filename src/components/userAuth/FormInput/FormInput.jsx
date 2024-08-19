@@ -77,6 +77,14 @@ const FormInput = ({info, errors}) => {
         }
     }
 
+    const validatePassword = password => {
+        let passwordValidated = false;
+        if (password.length > 7) {
+            passwordValidated = true;
+        }
+        return passwordValidated;
+    }
+
     useEffect(() => {
         setErrorText();
     },[errors.length])
