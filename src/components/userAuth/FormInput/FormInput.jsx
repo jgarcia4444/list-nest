@@ -22,19 +22,34 @@ const FormInput = ({info, errors}) => {
     }
 
     const handleInputChange = e => {
+        changeFunc(e.target.value);
         if (errors.length !== 0) {
             if (errors.filter(errorInfo => errorInfo.identifier === identifier).length !== 0) {
                 switch(identifier) {
                     case "firstName":
                         if (e.target.value.length > 0) {
-                            changeFunc(e.target.value);
                             removeError(identifier);
                         }
                     case "lastName":
+                        if (e.target.value.length > 0) {
+                            removeError(identifier);
+                        }
                     case "username":
+                        if (e.target.value.length > 3) {
+                            removeError(identifier);
+                        }
                     case "email":
+                        if (validateEmail(e.target.value) === true) {
+                            removeError(identifier);
+                        }
                     case "password":
+                        if (validatePassword(e.target.value) === true) {
+                            removeError(identifier);
+                        }
                     case "passwordConfirmation":
+                        if ((password.length !== 0 && passwordConfirmation.length !== 0) && (password === passwordConfirmation)) {
+                            removeError(identifier);
+                        }
                     default:
                         break;
                 }
