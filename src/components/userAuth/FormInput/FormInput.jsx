@@ -6,6 +6,8 @@ const FormInput = ({info, errors}) => {
 
     const {label, inputType, icon, placeholder, value, changeFunc, identifier} = info;
 
+
+
     const [errorMessage, setErrorMessage] = useState("");
 
     const setErrorText = () => {
@@ -15,6 +17,27 @@ const FormInput = ({info, errors}) => {
                 setErrorMessage(foundError[0].errorMessage);
             } else {
                 return setErrorMessage("");
+            }
+        }
+    }
+
+    const handleInputChange = e => {
+        if (errors.length !== 0) {
+            if (errors.filter(errorInfo => errorInfo.identifier === identifier).length !== 0) {
+                switch(identifier) {
+                    case "firstName":
+                        if (e.target.value.length > 0) {
+                            changeFunc(e.target.value);
+                            removeError(identifier);
+                        }
+                    case "lastName":
+                    case "username":
+                    case "email":
+                    case "password":
+                    case "passwordConfirmation":
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -33,7 +56,7 @@ const FormInput = ({info, errors}) => {
                 {icon}
                 <input 
                     value={value}
-                    onChange={e => changeFunc(e.target.value)}
+                    onChange={handleInputChange}
                     placeholder={placeholder} 
                     className="text-nude-color bg-transparent placeholder-nude-color placeholder-opacity-50 pl-2" 
                     type={inputType} 
