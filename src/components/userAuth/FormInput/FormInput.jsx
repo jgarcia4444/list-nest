@@ -80,7 +80,12 @@ const FormInput = ({info, errors}) => {
     const validatePassword = password => {
         let passwordValidated = false;
         if (password.length > 7) {
-            passwordValidated = true;
+            if (password.includes('!') || password.includes('@') || password.includes('#') || password.includes('$')) {
+                let splitString = password.split('');
+                if (splitString.some(char => char === char.toUpperCase())) {
+                    
+                }
+            }
         }
         return passwordValidated;
     }
