@@ -47,7 +47,7 @@ const FormInput = ({info, errors}) => {
                             removeError(identifier);
                         }
                     case "passwordConfirmation":
-                        if ((password.length !== 0 && passwordConfirmation.length !== 0) && (password === passwordConfirmation)) {
+                        if (password === passwordConfirmation) {
                             removeError(identifier);
                         }
                     default:
@@ -83,9 +83,11 @@ const FormInput = ({info, errors}) => {
             if (password.includes('!') || password.includes('@') || password.includes('#') || password.includes('$')) {
                 let splitString = password.split('');
                 if (splitString.some(char => char === char.toUpperCase())) {
-                    
-                }
-            }
+                    if (splitString.some(char => char === char.toLowerCase())) {
+                        passwordValidated = true;
+                    }
+                } 
+            } 
         }
         return passwordValidated;
     }
