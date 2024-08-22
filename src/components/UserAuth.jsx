@@ -44,13 +44,13 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 let infoValue = validatingInfo[infoKey];
                 switch(infoKey) {
                     case "email":
-                        errorPresent = validateEmail(infoValue);
+                        validateEmail(infoValue);
                     case "password":
-                        errorPresent = validatePassword(infoValue);
+                        validatePassword(infoValue);
                     case "passwordConfirmation":
-                        errorPresent = validatePasswordConfirmation(infoValue);                       
+                        validatePasswordConfirmation(infoValue);                       
                     case "username":
-                        errorPresent = validateUsername(infoValue);
+                        validateUsername(infoValue);
                     default:
                         continue;
                 }
@@ -72,7 +72,6 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 break;
             }
         }
-        return validated;
     }
 
     const lengthRequired = checkingPassword => {
@@ -82,13 +81,37 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 errorMessage: "Must be 8 characters in length."
             }
             addError(errorInfo);
-            return false;
         }
-        return true;
     }
 
     const specialCharacter = checkingPassword => {
-        
+        let regex = /[!@#$%^&*()]/
+        if (regex.test(checkingPassword) === false) {
+            let errorInfo = {
+                identifier: 'password',
+                errorMessage: "Must contain one of the following '!@#$%^&*()'",
+            }
+            addError(errorInfo);
+        }
+    }
+
+    const upperCaseRequired = checkingPassword => {
+        if (checkingPassword.split('').some(char => char === char.toUpperCase()) === false) {
+            let errorInfo = {
+                identifier: 'password',
+                errorMessage: 'Must contain an uppercase letter.'
+            }
+            addError(errorInfo);
+        }
+    }
+    const lowerCaseRequired = checkingPassword => {
+        if (checkingPassword.split('').some(char => char === char.toLowerCase()) === false) {
+            let errorInfo = {
+                identifier: 'password',
+                errorMessage: 'Must contain an lowercase letter.'
+            }
+            addError(errorInfo);
+        }
     }
 
     const validateEmail = potentialEmail => {
