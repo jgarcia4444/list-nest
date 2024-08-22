@@ -62,6 +62,35 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
         return errorPresent;
     }
 
+    const validatePassword = checkingPassword => {
+        let validated = true;
+        let checkingFunctions = [lengthRequired, specialCharacter, upperCaseRequired, lowerCaseRequired]
+        for (let i = 0; i < checkingFunctions.length; i++) {
+            validationFunction = checkingFunctions[i];
+            validated = validationFunction(checkingPassword);
+            if (validated === false) {
+                break;
+            }
+        }
+        return validated;
+    }
+
+    const lengthRequired = checkingPassword => {
+        if (checkingPassword.length < 8) {
+            let errorInfo = {
+                identifier: 'password',
+                errorMessage: "Must be 8 characters in length."
+            }
+            addError(errorInfo);
+            return false;
+        }
+        return true;
+    }
+
+    const specialCharacter = checkingPassword => {
+        
+    }
+
     const validateEmail = potentialEmail => {
         let emailQualifiers = ['@', '.']
         let qualifierIndex = 0;
