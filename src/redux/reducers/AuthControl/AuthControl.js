@@ -13,6 +13,13 @@ const initialState = {
 
 const AuthControl = (state=initialState, action) => {
     switch(action.type) {
+        case "REMOVE_ERROR":
+            let {identifier} = action.errorInfo;
+            let filteredErrors = state.errors.filter(error => error.identifier !== identifier)
+            return {
+                ...state,
+                errors: filteredErrors
+            }
         case "ADD_ERROR":
             return {
                 ...state,
