@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
-
 import { connect } from 'react-redux';
 
-const FormInput = ({info, errors}) => {
+import removeError from '../../../redux/actions/authActions/removeError';
+
+const FormInput = ({info, errors, removeError, authInfo}) => {
+
+    let {password} = authInfo;
 
     const {label, inputType, icon, placeholder, value, changeFunc, identifier} = info;
 
@@ -18,55 +21,65 @@ const FormInput = ({info, errors}) => {
             } else {
                 return setErrorMessage("");
             }
+        } else {
+            setErrorMessage("");
         }
     }
 
     const handleInputChange = e => {
+        if (errors.length === 0) {
+            setErrorMessage("");
+        }
         changeFunc(e.target.value);
-        if (errors.length !== 0) {
+        console.log(errors);
             if (errors.filter(errorInfo => errorInfo.identifier === identifier).length !== 0) {
                 switch(identifier) {
                     case "firstName":
                         if (e.target.value.length > 0) {
                             removeError(identifier);
                         }
+                        break;
                     case "lastName":
                         if (e.target.value.length > 0) {
                             removeError(identifier);
                         }
+                        break;
                     case "username":
                         if (e.target.value.length > 3) {
                             removeError(identifier);
                         }
+                        break;
                     case "email":
                         if (validateEmail(e.target.value) === true) {
                             removeError(identifier);
                         }
+                        break;
                     case "password":
                         if (validatePassword(e.target.value) === true) {
                             removeError(identifier);
                         }
+                        break;
                     case "passwordConfirmation":
-                        if (password === passwordConfirmation) {
+                        if (password === e.target.value) {
                             removeError(identifier);
                         }
+                        break;
                     default:
                         break;
                 }
             }
-        }
     }
 
     const validateEmail = potentialEmail => {
         let emailQualifiers = ['@', '.']
         let qualifierIndex = 0;
         let testingChar = emailQualifiers[qualifierIndex];
-        potentialEmail.split(testingChar);
+        potentialEmail = potentialEmail.split(testingChar);
         if (potentialEmail.length === 2) {
             potentialEmail = potentialEmail[1];
             qualifierIndex += 1;
             testingChar = emailQualifiers[qualifierIndex];
-            potentialEmail.split(testingChar);
+            potentialEmail = potentialEmail.split(testingChar);
             if (potentialEmail.length === 2) {
                 return true;
             } else {
@@ -119,10 +132,17 @@ const FormInput = ({info, errors}) => {
 const mapStateToProps = state => {
     return {
         errors: state.AuthControl.errors,
+        authInfo: state.AuthControl.authInfo
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeError: errorInfo => dispatch(removeError(errorInfo)),
     }
 }
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(FormInput);

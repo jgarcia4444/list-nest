@@ -8,14 +8,16 @@ import AuthForm from './userAuth/AuthForm';
 import createUser from '../redux/actions/userActions/createUser';
 import loginUser from '../redux/actions/userActions/loginUser';
 import addError from '../redux/actions/authActions/addError';
+import removeError from '../redux/actions/authActions/removeError';
 
 const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
 
     const navigate = useNavigate();
     const {authInfo, errors} = AuthControl
     const {loading, userInfo, } = UserInfo;
+    let {password} = authInfo;
 
-    let {email} = userInfo;
+    let {email,} = userInfo;
 
     const [login, setLogin] = useState(true);
 
@@ -62,11 +64,31 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
         return errorPresent;
     }
 
+    const validatePasswordConfirmation = checkingPassword => {
+        if (checkingPassword !== password) {
+            let errorInfo = {
+                identifier: "passwordConfirmation",
+                errorMessage: "Must match the password"
+            }
+            addError(errorInfo)
+        }
+    }
+
+    const validateUsername = checkingUsername => {
+        if (checkingUsername.length < 2) {
+            let errorInfo = {
+                identifier: "username",
+                errorMessage: "Must be 3 chracters or longer"
+            }
+            addError(errorInfo);
+        }
+    }
+
     const validatePassword = checkingPassword => {
         let validated = true;
         let checkingFunctions = [lengthRequired, specialCharacter, upperCaseRequired, lowerCaseRequired]
         for (let i = 0; i < checkingFunctions.length; i++) {
-            validationFunction = checkingFunctions[i];
+            let validationFunction = checkingFunctions[i];
             validated = validationFunction(checkingPassword);
             if (validated === false) {
                 break;
@@ -118,7 +140,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
         let emailQualifiers = ['@', '.']
         let qualifierIndex = 0;
         let testingChar = emailQualifiers[qualifierIndex];
-        potentialEmail.split(testingChar);
+        potentialEmail = potentialEmail.split(testingChar);
         if (potentialEmail.length !== 2) {
             let errorInfo = {
                 identifier: "email",
@@ -130,7 +152,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
         potentialEmail = potentialEmail[1];
         qualifierIndex += 1;
         testingChar = emailQualifiers[qualifierIndex];
-        potentialEmail.split(testingChar);
+        potentialEmail = potentialEmail.split(testingChar);
         if (potentialEmail.length !== 2) {
             let errorInfo = {
                 identifier: "email",
@@ -153,7 +175,9 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
             if (login === true) {
                 loginUser(authInfo);
             } else {
-                createUser(authInfo);
+                if (authInfo.password === authInfo.passwordConfirmation) {
+                    createUser(authInfo);
+                }
             }
         }
     }
@@ -169,7 +193,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
         if (email !== "") {
             navigate("/home");
         }
-    }, [email])
+    }, [email, errors])
 
     return (
         <div className="flex flex-col w-full items-center">

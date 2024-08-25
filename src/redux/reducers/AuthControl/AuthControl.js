@@ -13,9 +13,8 @@ const initialState = {
 
 const AuthControl = (state=initialState, action) => {
     switch(action.type) {
-        case "REMOVE_ERROR":
-            let {identifier} = action.errorInfo;
-            let filteredErrors = state.errors.filter(error => error.identifier !== identifier)
+        case "REMOVE_FORM_ERROR":
+            let filteredErrors = state.errors.filter(error => error.identifier !== action.identifier)
             return {
                 ...state,
                 errors: filteredErrors

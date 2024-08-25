@@ -1,8 +1,8 @@
 
-const removeError = errorInfo => {
+const removeError = identifier => {
     return {
         type: 'REMOVE_FORM_ERROR',
-        errorInfo,
+        identifier,
     }
 }
 
