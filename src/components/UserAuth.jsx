@@ -21,11 +21,21 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
 
     const [login, setLogin] = useState(true);
 
-    const otherPageButton = (
-        <button onClick={() => setLogin(!login)} className="text-primary-green bg-white py-1 px-4 rounded hover:cursor-pointer transition-all duration-300 hover:scale-105">
-            {login === true ? "Sign Up": "Login"}
-        </button>
-    )
+    const otherPageButton = () => {
+        const messageText = login === true ? "Don't have an account?" : "Already have an account?";
+        const buttonText = login === true ? "Sign Up" : "Login";
+
+        return (
+            <div className="flex flex-row">
+                <div className="">{messageText}</div>
+                <div onClick={() => setLogin(!login)} className="">{buttonText}</div>
+            </div>
+        )
+
+        // <button onClick={() => setLogin(!login)} className="text-primary-green bg-white py-1 px-4 rounded hover:cursor-pointer transition-all duration-300 hover:scale-105">
+        //     {login === true ? "Sign Up": "Login"}
+        // </button>
+    }
 
     
     const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
@@ -202,7 +212,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
             </div>
             <AuthForm login={login} />
             <div className="w-1/2 flex flex-row items-center justify-between mt-1">
-                {otherPageButton}
+                {otherPageButton()}
                 {submitButton}
             </div>
         </div>
