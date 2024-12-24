@@ -37,6 +37,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
     const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
 
     const validateForm = validatingInfo => {
+        console.log(validatingInfo)
         let errorPresent = false;
         let infoKeys = Object.keys(validatingInfo);
         for (let i = 0; i < infoKeys.length; i++) {
@@ -53,12 +54,16 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
                 switch(infoKey) {
                     case "email":
                         validateEmail(infoValue);
+                        break;
                     case "password":
                         validatePassword(infoValue);
+                        break;
                     case "passwordConfirmation":
-                        validatePasswordConfirmation(infoValue);                       
+                        validatePasswordConfirmation(infoValue);
+                        break;                       
                     case "username":
                         validateUsername(infoValue);
+                        break;
                     default:
                         continue;
                 }
@@ -71,6 +76,7 @@ const UserAuth = ({UserInfo, createUser, AuthControl, loginUser, addError}) => {
     }
 
     const validatePasswordConfirmation = checkingPassword => {
+        console.log(`Password: ${password} ~> Confirmation: ${checkingPassword}`)
         if (checkingPassword !== password) {
             let errorInfo = {
                 identifier: "passwordConfirmation",

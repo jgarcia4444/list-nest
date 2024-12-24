@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import SignOutButton from '../shared/buttons/SignOutButton';
+import PageWrapper from '../layout/PageWrapper';
 
 const Home = ({userInfo}) => {
 
@@ -17,10 +18,12 @@ const Home = ({userInfo}) => {
     },[uid])
 
     return (
-        <div className="">
-            Home
-            <SignOutButton />
-        </div>
+        <PageWrapper>
+            <div className="">
+                Home
+                <SignOutButton />
+            </div>
+        </PageWrapper>
     )
 };
 

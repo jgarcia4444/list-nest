@@ -31,6 +31,11 @@ const createUser = (userInfo) => {
                 console.log("Uh oh there was an error while trying to create the user.");
                 console.log(error.code);
                 console.log(error.message);
+                if (error.code === 'auth/network-request-failed') {
+                    console.log("Network request failed", error);
+                } else {
+                    console.log("Firebase Auth Error:", error);
+                }
             })
     }
 }
