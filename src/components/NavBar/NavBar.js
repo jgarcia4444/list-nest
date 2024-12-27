@@ -1,10 +1,11 @@
 import React from 'react';
 import { FiUsers, FiUser, FiSettings, FiLogOut } from "react-icons/fi";
+import { connect } from 'react-redux';
 
 import logo from '../../media/logo/ListNest-no-bg.png';
 import NavLink from './NavLink/NavLink';
 
-const NavBar = () => {
+const NavBar = ({logoutUser}) => {
 
     
 
@@ -19,7 +20,7 @@ const NavBar = () => {
 
         const logoutUser = () => {
             return (
-                <div className="flex flex-row bg-white bg-opacity-40 p-1 w-full hover:bg-opacity-80 transition-all duration-300">
+                <div onClick={logoutUser} className="flex flex-row bg-white bg-opacity-40 p-1 w-full hover:bg-opacity-80 transition-all duration-300">
                     <div className="">
                         <FiLogOut color={iconColor} size={iconSize} />
                     </div>
@@ -47,4 +48,13 @@ const NavBar = () => {
     )
 }
 
-export default NavBar;
+const mapDispatchToProps = dispatch => {
+    return {
+        logoutUser: () => dispatch({type: "LOGOUT_USER"}),
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(NavBar);

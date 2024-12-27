@@ -1,13 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import logo from '../media/logo/ListNest-no-bg.png';
 
 import UserAuth from '../components/UserAuth';
-import Home from './Home';
-
-import emulators from '../config/firebaseConfiguration';
 
 const Landing = ()  => {
 

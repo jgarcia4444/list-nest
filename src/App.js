@@ -5,6 +5,8 @@ import {
 
 import Home from './screens/Home';
 import Landing from './screens/Landing';
+import Housemates from "./screens/Housemates";
+import Settings from "./screens/Settings";
 
 function App() {
 
@@ -18,6 +20,14 @@ function App() {
       path: '/home',
       element: <Home />
     },
+    {
+      path: '/housemates',
+      element: <Housemates />
+    },
+    {
+      path: '/user/settings',
+      element: <Settings />
+    }
   ]);
 
 
