@@ -21,7 +21,7 @@ const Home = ({userInfo}) => {
         <PageWrapper>
             <div className="">
                 Home
-                <SignOutButton />
+                {/* <SignOutButton /> */}
             </div>
         </PageWrapper>
     )

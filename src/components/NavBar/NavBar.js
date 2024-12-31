@@ -1,13 +1,15 @@
 import React from 'react';
-import { FiUsers, FiUser, FiSettings, FiLogOut } from "react-icons/fi";
+import { FiUsers, FiUser, FiSettings, FiLogOut, FiLoader } from "react-icons/fi";
 import { connect } from 'react-redux';
 
 import logo from '../../media/logo/ListNest-no-bg.png';
 import NavLink from './NavLink/NavLink';
 
-const NavBar = ({logoutUser}) => {
+import logoutUser from '../../redux/actions/userActions/logoutUser';
 
-    
+const NavBar = ({handleLogoutUser, UserInfo}) => {
+
+    const {loading} = UserInfo;
 
     const renderNavLink = () => {
         const iconSize = 20;
@@ -19,14 +21,25 @@ const NavBar = ({logoutUser}) => {
         }
 
         const logoutUser = () => {
-            return (
-                <div onClick={logoutUser} className="flex flex-row bg-white bg-opacity-40 p-1 w-full hover:bg-opacity-80 transition-all duration-300">
-                    <div className="">
-                        <FiLogOut color={iconColor} size={iconSize} />
+            const loader = <FiLoader color={iconColor} size={iconSize} className="animate-spin" />
+            const containerRowClass = "flex flex-row bg-white bg-opacity-40 p-1 w-full"
+            if (loading === false) {
+                return (
+                    <div onClick={handleLogoutUser} className={`${containerRowClass} hover:bg-opacity-80 transition-all duration-300 items-center justify-start`}>
+                        <div className="">
+                            <FiLogOut color={iconColor} size={iconSize} />
+                        </div>
+                        <div className="">Logout</div>
                     </div>
-                    <div className="">Logout</div>
-                </div>
-            )
+                )
+            } else {
+                return (
+                    <div className={`${containerRowClass} items-center justify-center`}>
+                        {loader}
+                    </div>
+                )
+            }
+            
         }
 
         const navLinks = [
@@ -48,13 +61,19 @@ const NavBar = ({logoutUser}) => {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        UserInfo: state.UserInfo,
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
-        logoutUser: () => dispatch({type: "LOGOUT_USER"}),
+        handleLogoutUser: () => dispatch(logoutUser()),
     }
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(NavBar);

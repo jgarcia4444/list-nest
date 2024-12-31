@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import NavBar from '../components/NavBar/NavBar';
 
-const PageWrapper = ({children, userInfo}) => {
+const PageWrapper = ({children, UserInfo}) => {
 
+    const {loading, userInfo} = UserInfo;
     const {uid} = userInfo;
 
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ const PageWrapper = ({children, userInfo}) => {
     }, [uid])
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col h-screen overflow-y-auto w-full relative">
             <NavBar />
             <div className="">
                 {children}
@@ -29,7 +30,7 @@ const PageWrapper = ({children, userInfo}) => {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.UserInfo.userInfo,
+        UserInfo: state.UserInfo,
     }
 }
 

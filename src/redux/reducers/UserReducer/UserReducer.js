@@ -27,12 +27,12 @@ const UserReducer = (state=initialState, action) => {
                 ...state,
                 loading: true,
             }
-        case "USER_SIGN_OUT_SUCCESS": {
+        case "USER_LOG_OUT_SUCCESS": {
             return {
                 ...initialState
             }
         }
-        case "SIGNING_USER_OUT":
+        case "LOGGING_USER_OUT":
             return {
                 ...state,
                 loading: true,

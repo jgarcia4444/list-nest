@@ -2,13 +2,13 @@ import { signOut } from "firebase/auth";
 
 import emulators from "../../../config/firebaseConfiguration";
 
-const signOutUser = () => {
+const logoutUser = () => {
     const {auth}  = emulators;
     return async dispatch => {
-        dispatch({type: "SIGNING_USER_OUT"});
+        dispatch({type: "LOGGING_USER_OUT"});
         signOut(auth).then(() => {
                 setTimeout(() => {
-                    return dispatch({type: "USER_SIGN_OUT_SUCCESS"});
+                    return dispatch({type: "USER_LOG_OUT_SUCCESS"});
                 }, 1000)
             })
             .catch(error => {
@@ -18,4 +18,4 @@ const signOutUser = () => {
     }
 }
 
-export default signOutUser;
+export default logoutUser;

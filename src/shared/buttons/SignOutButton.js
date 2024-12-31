@@ -2,12 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { FiLoader } from 'react-icons/fi';
 
-import signOutUser from '../../redux/actions/userActions/signOutUser';
+import signOutUser from '../../redux/actions/userActions/logoutUser';
 
 
 const SignOutButton = ({loading, signOutUser}) => {
-
-    const loader = <FiLoader color={"#fff"} size={24} className="animate-spin" />
 
     return (
         <button onClick={() => signOutUser()} className="bg-primary-green px-8 py-2 rounded text-white">
