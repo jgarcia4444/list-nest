@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+import { FiLoader } from 'react-icons/fi';
+
 const NavLink = ({linkInfo}) => {
 
     const [showDropdown, setShowDropdown] = useState(false);
@@ -8,12 +10,26 @@ const NavLink = ({linkInfo}) => {
 
     const handleOnClick = () => {
         if (to === "#") {
+            if (to === "logout") {
+                setTimeout(() => null, 1000) 
+            }
             setShowDropdown(!showDropdown);
         }
     }
 
     const renderDropdownLinks = () => {
         return dropdownLinks.map(dropdownLink => dropdownLink)   
+    }
+
+    const showLoading = () => {
+        const loader = <FiLoader color={iconColor} size={iconSize} className="animate-spin" />
+        if (loading === true && label === "logout") {
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                {loader}
+            </div>
+        } else {
+            return ""
+        }
     }
 
     return (
