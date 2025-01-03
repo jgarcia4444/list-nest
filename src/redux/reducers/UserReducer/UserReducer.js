@@ -14,6 +14,16 @@ const initialState = {
 
 const UserReducer = (state=initialState, action) => {
     switch (action.type) {
+        case 'persist/REHYDRATE':
+            if (action.payload !== undefined) {
+                return {
+                    ...action.payload.UserInfo
+                }
+            } else {
+                return {
+                    ...state
+                }
+            }
         case "USER_LOGIN_SUCCESS":
             return {
                 ...state,
