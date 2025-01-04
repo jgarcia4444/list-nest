@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import SignOutButton from '../shared/buttons/SignOutButton';
 import PageWrapper from '../layout/PageWrapper';
+import Lists from '../components/Lists/Lists';
 
 const Home = ({userInfo}) => {
 
@@ -20,8 +20,7 @@ const Home = ({userInfo}) => {
     return (
         <PageWrapper>
             <div className="">
-                Home
-                {/* <SignOutButton /> */}
+                <Lists />
             </div>
         </PageWrapper>
     )

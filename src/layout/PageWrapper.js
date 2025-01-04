@@ -19,7 +19,7 @@ const PageWrapper = ({children, UserInfo}) => {
     }, [uid])
 
     return (
-        <div className="flex flex-col h-screen overflow-y-auto w-full relative">
+        <div className="flex flex-col h-screen overflow-y-auto w-full relative py-2 px-4">
             <NavBar />
             <div className="">
                 {children}
