@@ -7,9 +7,7 @@ const logoutUser = () => {
     return async dispatch => {
         dispatch({type: "LOGGING_USER_OUT"});
         signOut(auth).then(() => {
-                setTimeout(() => {
-                    return dispatch({type: "USER_LOG_OUT_SUCCESS"});
-                }, 1000)
+                return setTimeout(() => dispatch({type: "USER_LOG_OUT_SUCCESS"}), 1000)
             })
             .catch(error => {
                 console.log("ERROR SIGING OUT", error.message)

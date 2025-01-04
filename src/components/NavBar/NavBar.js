@@ -1,15 +1,13 @@
 import React from 'react';
 import { FiUsers, FiUser, FiSettings, FiLogOut, FiLoader } from "react-icons/fi";
-import { connect } from 'react-redux';
 
 import logo from '../../media/logo/ListNest-no-bg.png';
 import NavLink from './NavLink/NavLink';
 
 import logoutUser from '../../redux/actions/userActions/logoutUser';
 
-const NavBar = ({handleLogoutUser, UserInfo}) => {
+const NavBar = () => {
 
-    const {loading} = UserInfo;
 
     const renderNavLink = () => {
         const iconSize = 20;
@@ -21,25 +19,8 @@ const NavBar = ({handleLogoutUser, UserInfo}) => {
         }
 
         const logoutUser = () => {
-            const loader = <FiLoader color={iconColor} size={iconSize} className="animate-spin" />
-            const containerRowClass = "flex flex-row bg-white bg-opacity-40 p-1 w-full"
-            if (loading === false) {
-                return (
-                    <div onClick={handleLogoutUser} className={`${containerRowClass} hover:bg-opacity-80 transition-all duration-300 items-center justify-start`}>
-                        <div className="">
-                            <FiLogOut color={iconColor} size={iconSize} />
-                        </div>
-                        <div className="">Logout</div>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className={`${containerRowClass} items-center justify-center`}>
-                        {loader}
-                    </div>
-                )
-            }
-            
+            const linkInfo = { label: "Logout", to: "#", icon: <FiLogOut icon={iconColor} color={iconColor} /> }
+            return <NavLink linkInfo={linkInfo} />
         }
 
         const navLinks = [
@@ -61,19 +42,7 @@ const NavBar = ({handleLogoutUser, UserInfo}) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        UserInfo: state.UserInfo,
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        handleLogoutUser: () => dispatch(logoutUser()),
-    }
-}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(NavBar);
+
+export default NavBar;
