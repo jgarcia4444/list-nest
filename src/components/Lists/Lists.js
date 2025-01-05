@@ -2,6 +2,7 @@ import React from 'react';
 
 import List from './List/List';
 import PageTitle from '../../shared/text/PageTitle';
+import AddListButton from './AddListButton/AddListButton';
 
 const Lists = () => {
 
@@ -15,8 +16,9 @@ const Lists = () => {
 
     return (
         <div className="">
-            <div className="">
+            <div className="flex flex-row items-center justify-between">
                 <PageTitle title="Lists" />
+                <AddListButton />
             </div>
             <div className="w-full overflow-x-auto flex flex-row gap-8 shrink-0 mt-4 pb-4">
                 {renderLists()}
