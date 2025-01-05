@@ -18,7 +18,7 @@ const Lists = () => {
             <div className="">
                 <PageTitle title="Lists" />
             </div>
-            <div className="w-full overflow-x-auto flex flex-row gap-8 shrink-0 mt-4">
+            <div className="w-full overflow-x-auto flex flex-row gap-8 shrink-0 mt-4 pb-4">
                 {renderLists()}
             </div>
         </div>

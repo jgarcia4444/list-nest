@@ -16,7 +16,7 @@ const List = ({listInfo}) => {
             <div className="w-full flex flex-row items-start">
                 <ListTitle title={title} />
             </div>
-            <div className="w-full h-60 overflow-y-auto flex flex-col shrink-0 gap-4">
+            <div className="w-full h-60 overflow-y-auto flex flex-col shrink-0 gap-4 bg-primary-green bg-opacity-70 p-2 rounded border-2 border-primary-green shadow shadow-primary-green">
                 {renderListItems()}
             </div>
         </div>

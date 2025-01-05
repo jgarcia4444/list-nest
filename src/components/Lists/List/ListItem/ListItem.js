@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 
 import Checkbox from './Checkbox/Checkbox';
 
@@ -7,9 +8,9 @@ const ListItem = ({itemInfo}) => {
     const {item, complete} = itemInfo;
 
     return (
-        <div className="flex flex-row items-center justify-start">
+        <div className="flex flex-row items-end justify-start gap-2">
             <Checkbox complete={complete} />
-            <p className="">{item}</p>
+            <p className="text-white font-bold">{item}</p>
         </div>
     )
 }
