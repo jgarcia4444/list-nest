@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { connect } from 'react-redux';
 
 import List from './List/List';
 import PageTitle from '../../shared/text/PageTitle';
-import AddListButton from './AddListButton/AddListButton';
+import AddList from './AddList/AddList';
 
-const Lists = () => {
+const Lists = ({lists}) => {
 
-    const exampleListItems = [{item: "Lorem Ipsum", complete: false}, {item: "Lorem Ipsum", complete: true}, {item: "Lorem Ipsum", complete: false}];
+    const [listAdd, setListAdd] = useState(false);
 
-    const lists = [{title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}];
+    // const exampleListItems = [{item: "Lorem Ipsum", complete: false}, {item: "Lorem Ipsum", complete: true}, {item: "Lorem Ipsum", complete: false}];
+
+    // const lists = [{title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}, {title: "Lorem1", listItems: exampleListItems}];
 
     const renderLists = () => {
         return lists.map(listInfo => <List listInfo={listInfo} />)
@@ -18,7 +21,8 @@ const Lists = () => {
         <div className="">
             <div className="flex flex-row items-center justify-between">
                 <PageTitle title="Lists" />
-                <AddListButton />
+                <AddList />
+                
             </div>
             <div className="w-full overflow-x-auto flex flex-row gap-8 shrink-0 mt-4 pb-4">
                 {renderLists()}
@@ -27,4 +31,13 @@ const Lists = () => {
     )
 }
 
-export default Lists;
+const mapStateToProps = state => {
+    return {
+        lists: state.Lists.lists,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(Lists);

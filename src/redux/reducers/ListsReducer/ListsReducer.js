@@ -16,8 +16,13 @@ const initialState = {
 
 const ListsReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "ADD_LIST":
-            let newList = new List(listName)
+        case "ADDING_LIST":
+            return {
+                ...state,
+                loading: true,
+            }
+        case "ADDED_LIST":
+            let newList = new List(action.listName)
             let newLists = [...state.lists, newList];
             return {
                 ...state,
